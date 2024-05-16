@@ -4,18 +4,22 @@
   "main": "expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "web": "expo start --web"
   },
   "dependencies": {
     "@expo/metro-runtime": "~3.2.1",
     "@types/recordrtc": "^5.6.14",
+    "babel-plugin-module-resolver": "^5.0.2",
     "expo": "~51.0.6",
+    "expo-av": "^14.0.4",
+    "expo-dev-client": "~4.0.14",
     "expo-status-bar": "~1.12.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.1",
+    "react-native-recording": "^0.5.1",
     "react-native-web": "^0.19.11",
     "recordrtc": "^5.6.2",
     "socket.io-client": "^4.7.5"

@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
-import { Button, StyleSheet, View } from 'react-native';
-import { startStream } from '@utils/streamAudio';
+import { Button } from 'react-native';
+import { startStream } from '@utils/stream';
+import Layout from '@components/Layout';
 
 export default function App() {
   const [microphoneStatus, setMicrophoneStatus] = useState(false); // false for offline, true for online
   const [play, setPlay] = useState<Function | null>(null);
   const [stop, setStop] = useState<Function | null>(null);
-  const hasPermission = play && stop;
+  const canStreamAudio = play && stop;
 
   const toggleMicrophoneStatus = () => {
-    if (!hasPermission) return;
+    if (!canStreamAudio) return;
     microphoneStatus ? stop() : play()
     setMicrophoneStatus(!microphoneStatus);
   };
@@ -24,21 +25,13 @@ export default function App() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <Layout>
       <Button
         title={microphoneStatus ? 'Mic On' : 'Mic Off'}
         onPress={toggleMicrophoneStatus}
-        disabled={!hasPermission}
+        disabled={!canStreamAudio}
       />
-    </View>
+    </Layout>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
